@@ -1,0 +1,93 @@
+{
+  "info": {
+    "name": "Virtual Front Desk API",
+    "description": "API collection for Virtual Front Desk Programming Practice Project",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Session",
+      "item": [
+        {
+          "name": "Get Session Token",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/session/token",
+              "host": ["{{base_url}}"],
+              "path": ["api", "session", "token"]
+            },
+            "description": "Generates a new session token"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "Get All Tasks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/tasks",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tasks"]
+            },
+            "description": "Returns all worksheet tasks with their options"
+          },
+          "response": []
+        },
+        {
+          "name": "Submit Task Answer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{session_token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"optionId\": 3\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{base_url}}/api/tasks/1/answer",
+              "host": ["{{base_url}}"],
+              "path": ["api", "tasks", "1", "answer"]
+            },
+            "description": "Submits an answer for a task. Replace :taskId in the URL and optionId in the body."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3001",
+      "type": "string"
+    },
+    {
+      "key": "session_token",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
