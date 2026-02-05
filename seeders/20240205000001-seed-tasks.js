@@ -2,6 +2,10 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
+    // Idempotent seed: clear first so multiple deploys don't duplicate data
+    await queryInterface.bulkDelete('options', null, {});
+    await queryInterface.bulkDelete('tasks', null, {});
+
     // Insert 3 example tasks
     await queryInterface.bulkInsert('tasks', [
       {
