@@ -6,6 +6,10 @@ module.exports = {
     await queryInterface.bulkDelete('options', null, {});
     await queryInterface.bulkDelete('tasks', null, {});
 
+    // Reset AUTO_INCREMENT so new tasks get ids 1, 2, 3 (options reference task_id)
+    await queryInterface.sequelize.query('ALTER TABLE tasks AUTO_INCREMENT = 1');
+    await queryInterface.sequelize.query('ALTER TABLE options AUTO_INCREMENT = 1');
+
     // Insert 3 example tasks
     await queryInterface.bulkInsert('tasks', [
       {
