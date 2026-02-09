@@ -6,7 +6,7 @@ const getTasks = async (req, res) => {
       include: [{
         model: db.Option,
         as: 'options',
-        attributes: ['id', 'text', 'isCorrect']
+        attributes: ['id', 'text']
       }],
       order: [['id', 'ASC']]
     });

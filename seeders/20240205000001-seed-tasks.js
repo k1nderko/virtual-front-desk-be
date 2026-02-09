@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    // Idempotent seed: clear first so multiple deploys don't duplicate data
+    await queryInterface.bulkDelete('answers', null, {});
     await queryInterface.bulkDelete('options', null, {});
     await queryInterface.bulkDelete('tasks', null, {});
 
@@ -125,6 +125,7 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.bulkDelete('answers', null, {});
     await queryInterface.bulkDelete('options', null, {});
     await queryInterface.bulkDelete('tasks', null, {});
   }
